@@ -62,8 +62,6 @@ Hello from Java!
 
 The separator is the one the host defines, so the exact byte count varies between platforms; the literal and its single trailing separator do not. Standard error stays empty and the process exits with status 0. There is no `System.exit` call: `main` returns normally and the JVM then shuts down of its own accord, which is a deliberate property of the program rather than an omission.
 
-Source: Hello.java (Hello.main)
-
 ## Project Layout
 
 The repository is flat: three tracked files at the root, and no subdirectories.
