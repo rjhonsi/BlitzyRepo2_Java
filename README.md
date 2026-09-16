@@ -27,7 +27,7 @@ Compile from the repository root:
 javac Hello.java
 ```
 
-The compiler exits with status 0 and emits no diagnostics. Compiling this way leaves a `Hello.class` file next to the source, and the repository has no `.gitignore`, so that file shows up as untracked content in `git status`. To keep the working tree clean, direct the class output elsewhere with an output directory, as in `javac -d /tmp/hello-build Hello.java`. Do not commit the class file either way.
+The compiler exits with status 0 and emits no diagnostics. Compiling this way leaves a `Hello.class` file next to the source, and the repository has no `.gitignore`, so that file shows up as untracked content in `git status`. To keep the working tree clean, direct the class output to a directory created fresh for the run outside the checkout, as in `B="$(mktemp -d)" && javac -d "$B" Hello.java`, then launch the class from there with `java -cp "$B" Hello`. Let `mktemp -d` generate that directory: it returns a uniquely named one readable only by its owner, whereas a fixed, predictable destination can be pre-created, replaced or redirected through a symbolic link by another local process before the compiler writes into it. Do not commit the class file either way.
 
 ## Run
 
